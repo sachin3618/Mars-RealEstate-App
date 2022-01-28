@@ -49,6 +49,10 @@ class OverviewViewModel : ViewModel() {
     val properties: LiveData<List<MarsProperty>>
     get() = _properties
 
+    private val _navigateToSelectedProperty = MutableLiveData<MarsProperty>()
+    val navigateToSelectedProperty: LiveData<MarsProperty>
+    get()= _navigateToSelectedProperty
+
 
 
 
@@ -91,5 +95,14 @@ class OverviewViewModel : ViewModel() {
     override fun onCleared() {
         super.onCleared()
         viewmodelJob.cancel()
+    }
+
+
+    fun displayPropertiesDetails(marsProperty: MarsProperty){
+        _navigateToSelectedProperty.value = marsProperty
+    }
+
+    fun displayPropertiesDetailsComplete(){
+        _navigateToSelectedProperty.value = null
     }
 }
